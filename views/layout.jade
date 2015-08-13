@@ -3,9 +3,11 @@ html(ng-app="rclone")
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="//code.jquery.com/jquery-1.11.3.min.js")
-    script(src="//code.jquery.com/jquery-migrate-1.2.1.min.js")
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
+    script(src="/bower_components/angular/angular.min.js")
+    script(src="/bower_components/jquery/dist/jquery.min.js")
+    script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
   body
     block content
     script(src='/javascripts/home.js')
