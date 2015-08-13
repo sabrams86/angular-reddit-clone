@@ -10,7 +10,7 @@ html(ng-app="rclone")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
   body
     header
-      div(ng-controller="ContentController")
+      div(ng-controller="NavbarController")
         nav.navbar.navbar-default
           .container-fluid
             .navbar-header
@@ -23,7 +23,7 @@ html(ng-app="rclone")
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li
-                  a(href='#') + Submit Post
+                  a(href='#' ng-click="showPostForm()") + Submit Post
               form.navbar-form.navbar-left(role='search')
                 .form-group
                   input.form-control(type='text', placeholder='Search')
@@ -39,23 +39,23 @@ html(ng-app="rclone")
                       a(href='#') Date
                     li
                       a(href='#') Title
-        nav.navbar.navbar-default
-          .container-fluid
-            .navbar-header
-              button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
-              a.navbar-brand(href='#') New Post
-            #bs-example-navbar-collapse-1.collapse.navbar-collapse
-              form.navbar-form.navbar-left(role='search')
-                .form-group
-                  input.form-control(type='text', placeholder='Topic')
-                  input.form-control(type='text', placeholder='Description')
-                  button.btn(type='submit') Submit
-        
-      .container
+        .container
+          form#post-form(ng-hide="newPost == false")
+            .form-group
+              .form-group
+                label(for="title") Title
+                input#title.form-control(type='text')
+              .form-group
+                label(for="author") Author
+                input#author.form-control(type='text')
+              .form-group
+                label(for="url") Image URL
+                input#url.form-control(type='url')
+              .form-group
+                label(for="description") Description
+                input#description.form-control(type='text')
+              .form-group
+                button.btn(type='submit') Submit
     block content
     footer
       .container
