@@ -87,3 +87,15 @@ html, body {
   margin-top: 20px;
   font-size: 12px;
 }
+.rating {
+  font-weight: 700;
+}
+.black {
+  color: black;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}

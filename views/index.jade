@@ -12,7 +12,7 @@ block content
           i.fa.fa-arrow-up(ng-click="upVote()") 
           |  
           i.fa.fa-arrow-down(ng-click="downVote()") 
-          span.rating  {{post.votes}}
+          span.rating(ng-class="{green: post.votes > 0, black: post.votes == 0, red: post.votes < 0}")  {{post.votes}}
         main
           p.right By {{post.author}}
           .clear

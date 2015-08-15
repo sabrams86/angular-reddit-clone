@@ -35,6 +35,7 @@ app.controller("NavbarController", function ($scope) {
     post.description = $scope.description;
     post.date = Date.now();
     post.votes = 0;
+    post.comments = [];
     posts.push(post);
     $scope.showPostForm();
     $scope.title = '';
