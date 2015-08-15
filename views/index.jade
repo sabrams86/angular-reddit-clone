@@ -23,7 +23,21 @@ block content
             |  
             span.date {{post.date | date: 'medium'}}
             span.pipe    
-            i.fa.fa-comment
-            span.pipe     
-            i.fa.fa-pencil
-          
+            i.fa.fa-comment(ng-click='commentShow()')
+            span  comments 
+            i.fa.fa-pencil(ng-click="commentFormShow()")
+            span  Add Comment 
+        div.comment-form(ng-hide="showCommentForm == false")
+          form.form-inline
+            .form-group
+              label Name &nbsp;
+                input.form-control.input-sm(type='text' ng-model="comments.name")
+              | &nbsp;&nbsp;
+              label Comment &nbsp;
+                input.form-control.input-sm(type='text' ng-model="comments.content")
+              | &nbsp;&nbsp; 
+              button.btn.btn-default.btn-sm(type='submit' ng-click="postComment()") Post
+        div.comments(ng-hide="showComments == false")
+          div.comment(ng-repeat="comment in post.comments")
+            span.name {{comment.name}} - 
+            span.content {{comment.content}}
