@@ -1,6 +1,29 @@
 extends layout
 
 block content
-  .container(ng-controller="ContentController")
-    div(ng-repeat="post in posts | orderBy: 'date'")
-      
+  .container
+    div.post(ng-repeat="post in posts | orderBy: order: orderDir")
+      div.image
+        img.thumbnail(ng-src="{{post.url}}")
+      div.content
+        header
+          h1.title {{post.title}}
+          span.pipe    
+          i.fa.fa-arrow-up(ng-click="upVote()") 
+          |  
+          i.fa.fa-arrow-down(ng-click="downVote()") 
+          span.rating  {{post.votes}}
+        main
+          p.right By {{post.author}}
+          .clear
+          p {{post.description}}
+        footer
+          .post-footer
+            i.fa.fa-calendar
+            |  
+            span.date {{post.date | date: 'medium'}}
+            span.pipe    
+            i.fa.fa-comment
+            span.pipe     
+            i.fa.fa-pencil
+          

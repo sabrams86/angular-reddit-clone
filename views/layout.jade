@@ -2,17 +2,19 @@ doctype html
 html(ng-app="rclone")
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/bower_components/css-reset/reset.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href="/bower_components/font-awesome/css/font-awesome.min.css")
     script(src="/bower_components/angular/angular.min.js")
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-  body
+  body(ng-controller="NavbarController")
     header
-      div(ng-controller="NavbarController")
+      div
         nav.navbar.navbar-default
-          .container-fluid
+          .container-fluid.container-header
             .navbar-header
               button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
                 span.sr-only Toggle navigation
@@ -23,39 +25,41 @@ html(ng-app="rclone")
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li
-                  a(href='#' ng-click="showPostForm()") + Submit Post
+                  a(href='#' ng-click="showPostForm()")
+                    i.fa.fa-plus  
+                    |  Submit Post
               form.navbar-form.navbar-left(role='search')
                 .form-group
                   input.form-control(type='text', placeholder='Search')
               ul.nav.navbar-nav
                 li.dropdown
                   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    | Sort By Votes 
+                    | {{sortOrder}} 
                     span.caret
                   ul.dropdown-menu
                     li
-                      a(href='#') Votes
+                      a(href='#' ng-click='orderVotes()') Votes
                     li
-                      a(href='#') Date
+                      a(href='#' ng-click='orderDates()') Date
                     li
-                      a(href='#') Title
+                      a(href='#' ng-click='orderTitles()') Title
         .container
           form#post-form(ng-hide="newPost == false")
             .form-group
               .form-group
                 label(for="title") Title
-                input#title.form-control(type='text')
+                input#title.form-control(type='text' ng-model='title')
               .form-group
                 label(for="author") Author
-                input#author.form-control(type='text')
+                input#author.form-control(type='text' ng-model='author')
               .form-group
                 label(for="url") Image URL
-                input#url.form-control(type='url')
+                input#url.form-control(type='url' ng-model='url')
               .form-group
                 label(for="description") Description
-                input#description.form-control(type='text')
+                input#description.form-control(type='text' ng-model='description')
               .form-group
-                button.btn(type='submit') Submit
+                button.btn(type='submit' ng-click='createPost()') Submit
     block content
     footer
       .container
