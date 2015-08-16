@@ -1,11 +1,13 @@
-var app = angular.module("rclone", []);
+var app = angular.module("rclone", ['angularMoment']);
+
+
 var posts = [
   {
     title: "Cat Attack",
     author: "Steve",
     url: "http://img07.deviantart.net/43cc/i/2002/34/1/d/clumsy_cat.jpg",
     description: "Vicious cat attack on innocent sleeping dog",
-    date: Date.now()-5000,
+    date: Date.now()-500000000,
     votes: 5,
     comments: [{name: "Steve", content: "This is a comment"}, {name: "Guy", content: "What are you talking about!"}],
   },
@@ -19,7 +21,11 @@ var posts = [
     comments: [{name: "Steve", content: "Angular Rocks"}, {name: "Dinoman", content: "Hah, that's hilarious"}],
   }
 ];
+
+
 app.controller("NavbarController", function ($scope) {
+  var vm = this;
+  vm.time = new Date();
   $scope.sortOrder = "Sort By Votes"
   $scope.newPost = false;
   $scope.showComments = false;

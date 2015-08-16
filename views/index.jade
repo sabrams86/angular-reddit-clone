@@ -21,7 +21,7 @@ block content
           .post-footer
             i.fa.fa-calendar
             |  
-            span.date {{post.date | date: 'medium'}}
+            span.date(am-time-ago="{post.date}") {{post.date | amCalendar}}
             span.pipe    
             i.fa.fa-comment(ng-click='commentShow()')
             span  comments 

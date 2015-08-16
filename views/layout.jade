@@ -10,7 +10,9 @@ html(ng-app="rclone")
     script(src="/bower_components/angular/angular.min.js")
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-  body(ng-controller="NavbarController")
+    script(src="/bower_components/moment/moment.js")
+    script(src="/bower_components/angular-moment/angular-moment.js")
+  body(ng-controller="NavbarController as main")
     header
       div
         nav.navbar.navbar-default
