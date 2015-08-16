@@ -30,7 +30,7 @@ html(ng-app="rclone")
                     |  Submit Post
               form.navbar-form.navbar-left(role='search')
                 .form-group
-                  input.form-control(type='text', placeholder='Search')
+                  input.form-control(type='text', ng-model="search.title" placeholder='Search')
               ul.nav.navbar-nav
                 li.dropdown
                   a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
@@ -44,22 +44,28 @@ html(ng-app="rclone")
                     li
                       a(href='#' ng-click='orderTitles()') Title
         .container
-          form#post-form(ng-hide="newPost == false")
+          form#post-form(name="userForm" ng-hide="newPost == false" ng-submit="submitForm(userForm.$valid)" novalidate)
             .form-group
-              .form-group
+              .form-group(ng-class="{ 'has-error' : userForm.title.$invalid && !userForm.title.$pristine }")
                 label(for="title") Title
-                input#title.form-control(type='text' ng-model='title')
-              .form-group
+                input#title.form-control(type='text' name="title" ng-model='title' required ng-minlength="2")
+                p(ng-show="userForm.title.$invalid && !userForm.title.$pristine" class="help-block") Title is required.
+                p(ng-show="userForm.title.$error.minlength" class="help-block") Title is too short.
+              .form-group(ng-class="{ 'has-error' : userForm.author.$invalid && !userForm.author.$pristine }")
                 label(for="author") Author
-                input#author.form-control(type='text' ng-model='author')
-              .form-group
+                input#author.form-control(type='text' name="author" ng-model='author' required ng-minlength="2")
+                p(ng-show="userForm.author.$invalid && !userForm.author.$pristine" class="help-block") Your name is required.
+                p(ng-show="userForm.author.$error.minlength" class="help-block") Author is too short.
+              .form-group(ng-class="{ 'has-error' : userForm.url.$invalid && !userForm.url.$pristine }")
                 label(for="url") Image URL
-                input#url.form-control(type='url' ng-model='url')
-              .form-group
+                input#url.form-control(type='url' name="url" ng-model='url' required)
+                p(ng-show="userForm.url.$invalid && $!userForm.url.$pristine" class="help-block") Image URL is required.
+              .form-group(ng-class="{ 'has-error' : userForm.description.$invalid && !userForm.description.$pristine }")
                 label(for="description") Description
-                input#description.form-control(type='text' ng-model='description')
+                input#description.form-control(type='text' name="description" ng-model='description' required)
+                p(ng-show="userForm.description.$invalid && $!userForm.description.$pristine" class="help-block") Description is required
               .form-group
-                button.btn(type='submit' ng-click='createPost()') Submit
+                button.btn(type='submit' ng-click='createPost()' ng-disabled="userForm.$invalid") Submit
     block content
     footer
       .container

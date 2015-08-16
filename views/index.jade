@@ -2,7 +2,7 @@ extends layout
 
 block content
   .container
-    div.post(ng-repeat="post in posts | orderBy: order: orderDir")
+    div.post(ng-repeat="post in posts | filter:search | orderBy: order: orderDir")
       div.image
         img.thumbnail(ng-src="{{post.url}}")
       div.content
@@ -28,15 +28,15 @@ block content
             i.fa.fa-pencil(ng-click="commentFormShow()")
             span  Add Comment 
         div.comment-form(ng-hide="showCommentForm == false")
-          form.form-inline
+          form.form-inline(name="commentForm" ng-submit="submitForm(commentForm.$valid)" novalidate)
             .form-group
               label Name &nbsp;
-                input.form-control.input-sm(type='text' ng-model="comments.name")
+                input.form-control.input-sm(type='text' ng-model="comments.name" required ng-minlength="2")
               | &nbsp;&nbsp;
               label Comment &nbsp;
-                input.form-control.input-sm(type='text' ng-model="comments.content")
+                input.form-control.input-sm(type='text' ng-model="comments.content" required)
               | &nbsp;&nbsp; 
-              button.btn.btn-default.btn-sm(type='submit' ng-click="postComment()") Post
+              button.btn.btn-default.btn-sm(type='submit' ng-click="postComment()" ng-disabled="commentForm.$invalid") Post
         div.comments(ng-hide="showComments == false")
           div.comment(ng-repeat="comment in post.comments")
             span.name {{comment.name}} - 

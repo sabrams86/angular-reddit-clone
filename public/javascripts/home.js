@@ -83,6 +83,11 @@ app.controller("NavbarController", function ($scope) {
   $scope.commentFormShow = function () {
     this.showCommentForm = !this.showCommentForm;
   }
+  $scope.submitForm = function (isValid) {
+    if (isValid) {
+      alert('our form is amazing');
+    }
+  }
 })
 
 app.controller("ContentController", function ($scope) {
