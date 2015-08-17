@@ -51,7 +51,7 @@ var posts = [
 
 
 app.controller("NavbarController", function ($scope) {
-  $scope.sortOrder = "Sort By Votes"
+  $scope.sortOrder = "Sort By Votes";
   $scope.newPost = false;
   $scope.showComments = false;
   $scope.showCommentForm = false;
