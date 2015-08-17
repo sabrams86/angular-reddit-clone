@@ -61,11 +61,11 @@ html(ng-app="rclone")
               .form-group(ng-class="{ 'has-error' : userForm.url.$invalid && !userForm.url.$pristine }")
                 label(for="url") Image URL
                 input#url.form-control(type='url' name="url" ng-model='url' required)
-                p(ng-show="userForm.url.$invalid && $!userForm.url.$pristine" class="help-block") Image URL is required.
+                p(ng-show="userForm.url.$invalid && !userForm.url.$pristine" class="help-block") Image URL is required.
               .form-group(ng-class="{ 'has-error' : userForm.description.$invalid && !userForm.description.$pristine }")
                 label(for="description") Description
                 input#description.form-control(type='text' name="description" ng-model='description' required)
-                p(ng-show="userForm.description.$invalid && $!userForm.description.$pristine" class="help-block") Description is required
+                p(ng-show="userForm.description.$invalid && !userForm.description.$pristine" class="help-block") Description is required
               .form-group
                 button.btn(type='submit' ng-click='createPost()' ng-disabled="userForm.$invalid") Submit
     block content

@@ -24,19 +24,26 @@ block content
             span.date(am-time-ago="{post.date}") {{post.date | amCalendar}}
             span.pipe    
             i.fa.fa-comment(ng-click='commentShow()')
-            span  comments 
+              span
+                ng-pluralize(count="post.comments.length" when="{0: ' No Comments ', 1: ' 1 comment ', other: ' {} comments '}")
+            |   
             i.fa.fa-pencil(ng-click="commentFormShow()")
-            span  Add Comment 
+              span  Add Comment 
         div.comment-form(ng-hide="showCommentForm == false")
           form.form-inline(name="commentForm" ng-submit="submitForm(commentForm.$valid)" novalidate)
             .form-group
-              label Name &nbsp;
-                input.form-control.input-sm(type='text' ng-model="comments.name" required ng-minlength="2")
-              | &nbsp;&nbsp;
-              label Comment &nbsp;
-                input.form-control.input-sm(type='text' ng-model="comments.content" required)
-              | &nbsp;&nbsp; 
-              button.btn.btn-default.btn-sm(type='submit' ng-click="postComment()" ng-disabled="commentForm.$invalid") Post
+              .form-group(ng-class="{ 'has-error' : commentForm.name.$invalid && !commentForm.name.$pristine }")
+                label Name &nbsp;
+                  input.form-control.input-sm(type='text' name='name' ng-model="comments.name" required ng-minlength="2")
+                p(ng-show="commentForm.name.$invalid && !commentForm.name.$pristine" class="help-block") Enter your name 
+                p(ng-show="commentForm.name.$error.minlength" class="help-block") Title is too short.
+                | &nbsp;&nbsp;
+              .form-group(ng-class="{ 'has-error' : commentForm.content.$invalid && !commentForm.content.$pristine }")  
+                label Comment &nbsp;
+                  input.form-control.input-sm(type='text' name='content' ng-model="comments.content" required)
+                p(ng-show="commentForm.content.$invalid && !commentForm.content.$pristine" class="help-block") Enter a comment
+                | &nbsp;&nbsp; 
+                button.btn.btn-default.btn-sm(type='submit' ng-click="postComment()" ng-disabled="commentForm.$invalid") Post
         div.comments(ng-hide="showComments == false")
           div.comment(ng-repeat="comment in post.comments")
             span.name {{comment.name}} - 
