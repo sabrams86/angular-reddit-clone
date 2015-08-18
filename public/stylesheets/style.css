@@ -31,6 +31,10 @@ html, body {
   margin-bottom: 20px;
   min-height:190px;
 }
+.ng-enter, .ng-leave, .ng-move {
+  -webkit-animation: 0.5s bounceInUp ease;
+  animation: 0.5s bounceInUp ease;
+}
 .post:hover {
   box-shadow: 2px 2px 1px #eeeeee;
 }
@@ -98,4 +102,13 @@ html, body {
 }
 .red {
   color: red;
+}
+
+.ng-hide-add {
+  -webkit-animation: 0.5s fadeOut ease;
+  animation: 0.5s fadeOut ease;
+}
+.ng-hide-remove {
+  -webkit-animation: 0.5s fadeIn ease;
+  animation: 0.5s fadeIn ease;
 }
